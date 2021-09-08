@@ -1,15 +1,53 @@
 
 body {
   background-color: rgb(226, 223, 223);
+  margin: 30px;
+}
+
+
+
+
+.button {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 8px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  margin: 4px 2px;
+  cursor: pointer;
+
+}
+
+.button-create {
+  background-color: #008CBA;
+}
+
+.button-save {
+  display: block;
+  width: 100px;
+  margin: auto;
+}
+
+input {
+  width: 100%;
+  padding: 12px 12px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
 }
 
 .task-lists {
+  margin-top: 50px;
   display: flex;
 }
 
 .task-list {
-  margin: 20px;
   width: 30%;
+  padding: 20px;
 }
 
 .task-list-title {
