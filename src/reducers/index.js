@@ -1,10 +1,12 @@
 
 
 export default function tasks(state = {tasks: []}, action) {
-    if (action.type === 'CREATE_TASK') {
-        return { tasks: state.tasks.concat(action.payload)};
+  switch(action.type) {
+    case 'CREATE_TASK': {
+      return { tasks: state.tasks.concat(action.payload)};
     }
-    if (action.type === 'EDIT_TASK') {
+
+    case 'EDIT_TASK': {
       const { payload } = action;
       return {
         tasks: state.tasks.map(task => {
@@ -15,8 +17,19 @@ export default function tasks(state = {tasks: []}, action) {
         })
       }
     }
-    if (action.type === 'FETCH_TASKS_SUCCCEEDED') {
+
+    case 'FETCH_TASKS_SUCCEEDED': {
       return {tasks: action.payload.tasks}
     }
-    return state
+
+    case 'CREATE_TASK_SUCCEEDED': {
+      return {
+        tasks: state.tasks.concat(action.payload.task),
+      };
+    }
+
+    default: {
+      return state
+    }
+  }
 }

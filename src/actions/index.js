@@ -10,7 +10,7 @@ export function uniqueId() {
 
 export function fetchTasksSucceeded(tasks) {
     return {
-        type: 'FETCH_TASKS_SUCCCEEDED',
+        type: 'FETCH_TASKS_SUCCEEDED',
         payload: {
             tasks
         }
@@ -20,20 +20,26 @@ export function fetchTasksSucceeded(tasks) {
 export function fetchTasks() {
     return dispatch => {
         api.fetchTasks().then(resp => {
+            console.log(resp)
             dispatch(fetchTasksSucceeded(resp.data));
         });
     }
 }
 
-export function createTask({ title, description }) {
+function createTaskSucceeded(task) {
     return {
-        type: 'CREATE_TASK',
+        type: 'CREATE_TASK_SUCCEEDED',
         payload: {
-            id: uniqueId(),
-            title,
-            description,
-            status: 'Unstarted',
+            task,
         },
+    };
+}
+
+export function createTask({ title, description, status = 'Unstarted' }) {
+    return dispatch => {
+        api.createTask({ title, description, status}).then(resp => {
+            dispatch(createTaskSucceeded(resp.data));
+        });
     };
 }
 
