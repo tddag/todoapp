@@ -1,5 +1,4 @@
-import axios from 'axios';
-
+import * as api from '../api';
 
 
 
@@ -20,8 +19,7 @@ export function fetchTasksSucceeded(tasks) {
 
 export function fetchTasks() {
     return dispatch => {
-        axios.get('http://localhost:3001/tasks').then(resp => {
-            console.log(resp)
+        api.fetchTasks().then(resp => {
             dispatch(fetchTasksSucceeded(resp.data));
         });
     }
