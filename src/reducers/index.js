@@ -25,6 +25,12 @@ const mockTasks = [
         description: 'Anatomy, Holding a guitar, Tuning a guitar, playing open chords, strumming in rhythm',
         status: 'In Progress',
       },
+      {
+        id: uniqueId(),
+        title: 'Learn Terminal Commands',
+        description: 'Navigating the File System, Viewing and Chaning the File System, Redirecting Input and Output, Configuring the Environment',
+        status: 'In Progress',
+      },
   ];
 
 export default function tasks(state = {tasks: mockTasks}, action) {
