@@ -21,6 +21,7 @@ export function fetchTasksSucceeded(tasks) {
 export function fetchTasks() {
     return dispatch => {
         axios.get('http://localhost:3001/tasks').then(resp => {
+            console.log(resp)
             dispatch(fetchTasksSucceeded(resp.data));
         });
     }
