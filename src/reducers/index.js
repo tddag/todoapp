@@ -28,6 +28,19 @@ export default function tasks(state = {tasks: []}, action) {
       };
     }
 
+    case 'EDIT_TASK_SUCCEEDED': {
+      const { payload } = action;
+      return {
+        tasks: state.tasks.map(task => {
+          if (task.id === payload.task.id) {
+            return payload.task;
+          }
+
+          return task;
+        }),
+      };
+    }
+
     default: {
       return state
     }
