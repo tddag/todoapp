@@ -54,7 +54,8 @@ class TasksPage extends Component {
         if (this.props.isLoading) {
             return (
                 <div className="tasks-loading">
-                    Loading...
+                    <div className="spinner"></div>
+                    <div className="tasks-loading-message"> Loading... </div>
                 </div>
             );
         }
