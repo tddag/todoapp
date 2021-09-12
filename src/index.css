@@ -102,3 +102,13 @@ input {
   margin-top: 20px;
   font-weight: bold;
 }
+
+.flash-error {
+  background-color: #f44336;
+  width:50%;
+  padding: 15px;
+  margin: auto;
+  text-align: center;
+  color: white;
+  transition: 0.3s;
+}

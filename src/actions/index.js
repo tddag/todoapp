@@ -24,6 +24,15 @@ function fetchTasksStarted() {
     };
 }
 
+function fetchTasksFailed(error) {
+    return {
+        type: 'FETCH_TASKS_FAILED',
+        payload: {
+            error,
+        },
+    };
+}
+
 export function fetchTasks() {
     return dispatch => {
         dispatch(fetchTasksStarted());
@@ -31,7 +40,10 @@ export function fetchTasks() {
         api.fetchTasks().then(resp => {
             setTimeout( () => {
                 dispatch(fetchTasksSucceeded(resp.data));
-            }, 2000 );
+            }, 1000 );
+        })
+        .catch (err => {
+            dispatch(fetchTasksFailed(err.message));
         });
     };
 }
