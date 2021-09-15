@@ -11,6 +11,7 @@ import tasksReducer from './reducers';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import logger from './middleware/logger';
 import analytics from './middleware/analytics';
+import apiMiddleware from './middleware/api';
 
 const rootReducer = (state = {}, action) => {
   return {
@@ -19,7 +20,7 @@ const rootReducer = (state = {}, action) => {
 };
 
 // const store = createStore(tasks, devToolsEnhancer() );
-const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk, logger, analytics)));
+const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk, apiMiddleware, logger, analytics)));
 
 
 ReactDOM.render(

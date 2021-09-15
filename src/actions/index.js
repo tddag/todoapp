@@ -1,52 +1,59 @@
 import * as api from '../api';
+import { CALL_API } from '../middleware/api';
+
+export const FETCH_TASKS_STARTED = 'FETCH_TASKS_STARTED';
+export const FETCH_TASKS_SUCCEEDED = 'FETCH_TASKS_SUCCEEDED';
+export const FETCH_TASKS_FAILED = 'FETCH_TASKS_FAILED;'
 
 
-
-let _id = 1;
-export function uniqueId() {
-    return _id++;
-}
-
-
-export function fetchTasksSucceeded(tasks) {
+export function fetchTasks() {
     return {
-        type: 'FETCH_TASKS_SUCCEEDED',
-        payload: {
-            tasks
-        }
-    }
-}
-
-
-function fetchTasksStarted() {
-    return {
-        type: 'FETCH_TASKS_STARTED',
-    };
-}
-
-function fetchTasksFailed(error) {
-    return {
-        type: 'FETCH_TASKS_FAILED',
-        payload: {
-            error,
+        [CALL_API]: {
+            types: [FETCH_TASKS_STARTED, FETCH_TASKS_SUCCEEDED, FETCH_TASKS_FAILED],
+            endpoint: '/tasks',
         },
     };
 }
 
-export function fetchTasks() {
-    return dispatch => {
-        dispatch(fetchTasksStarted());
+// export function fetchTasksSucceeded(tasks) {
+//     return {
+//         type: 'FETCH_TASKS_SUCCEEDED',
+//         payload: {
+//             tasks
+//         }
+//     }
+// }
 
-        api.fetchTasks().then(resp => {
-            setTimeout( () => {
-                dispatch(fetchTasksSucceeded(resp.data));
-            }, 1000 );
-        })
-        .catch (err => {
-            dispatch(fetchTasksFailed(err.message));
-        });
-    };
-}
+
+// function fetchTasksStarted() {
+//     return {
+//         type: 'FETCH_TASKS_STARTED',
+//     };
+// }
+
+// function fetchTasksFailed(error) {
+//     return {
+//         type: 'FETCH_TASKS_FAILED',
+//         payload: {
+//             error,
+//         },
+//     };
+// }
+
+// export function fetchTasks() {
+//     return dispatch => {
+//         dispatch(fetchTasksStarted());
+
+//         api.fetchTasks().then(resp => {
+//             setTimeout( () => {
+//                 dispatch(fetchTasksSucceeded(resp.data));
+//             }, 1000 );
+//         })
+//         .catch (err => {
+//             dispatch(fetchTasksFailed(err.message));
+//         });
+//     };
+// }
 
 function createTaskSucceeded(task) {
     return {
