@@ -43,7 +43,7 @@ export default function tasks(state = initialState, action) {
     case 'CREATE_TASK_SUCCEEDED': {
       return {
         ...state,
-        tasks: state.tasks.concat(action.payload.task),
+        tasks: state.tasks.concat(action.payload),
       };
     }
 
