@@ -1,4 +1,6 @@
-import { call, fork, put, takeLatest } from 'redux-saga/effects';
+import { call, put, takeLatest } from 'redux-saga/effects';
+// import { call, fork, put, takeLatest } from 'redux-saga/effects';
+
 import * as api from './api';
 
 export default function* rootSaga() {
@@ -23,8 +25,8 @@ function* fetchTasks() {
     }
 }
 
-function* watchSomethingElse() {
-    console.log('watching something else!');
-}
+// function* watchSomethingElse() {
+//     console.log('watching something else!');
+// }
 
 

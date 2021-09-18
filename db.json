@@ -4,55 +4,57 @@
       "id": 1,
       "title": "Learn Redux",
       "description": "The store, actions, and reducers, oh my!",
-      "status": "Unstarted"
+      "status": "Unstarted",
+      "timer": 0
     },
     {
       "id": 2,
       "title": "Peace on Earth",
       "description": "No big deal.",
-      "status": "In Progress"
+      "status": "In Progress",
+      "timer": 0
     },
     {
       "id": 3,
       "title": "Go to gym",
       "description": "Deadlift, Squat, Bench Press",
-      "status": "Completed"
+      "status": "Completed",
+      "timer": 0
     },
     {
       "id": 4,
       "title": "Learn guitar",
       "description": "Anatomy, Holding a guitar, Tuning a guitar, playing open chords, strumming in rhythm",
-      "status": "Completed"
+      "status": "Completed",
+      "timer": 0
     },
     {
       "id": 5,
       "title": "Learn Terminal Commands",
       "description": "Navigating the File System, Viewing and Chaning the File System, Redirecting Input and Output, Configuring the Environment",
-      "status": "In Progress"
+      "status": "In Progress",
+      "timer": 0
     },
     {
       "id": 6,
       "title": "Create Facebook for dogs",
       "description": "The hottest new social network",
-      "status": "In Progress"
+      "status": "In Progress",
+      "timer": 0
     },
     {
       "title": "test",
       "description": "new test details",
       "status": "Unstarted",
-      "id": 7
+      "id": 7,
+      "timer": 0
     },
     {
       "title": "new task added 2021_0913",
       "description": "more details on this please",
       "status": "Unstarted",
-      "id": 8
-    },
-    {
-      "title": "new task added 2021_0915",
-      "description": "more details",
-      "status": "Unstarted",
-      "id": 9
+      "id": 8,
+      "timer": 0
     }
   ]
 }

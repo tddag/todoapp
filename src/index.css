@@ -112,3 +112,9 @@ input {
   color: white;
   transition: 0.3s;
 }
+
+.task-timer {
+  font-weight: bold;
+  display: flex;
+  justify-content: flex-end;
+}
