@@ -69,6 +69,16 @@ export default function tasks(state = initialState, action) {
       };
     }
 
+    case 'TIMER_INCREMENT': {
+      const nextTasks = state.tasks.map(task => {
+        if (task.id === action.payload.taskId) {
+          return { ...task, timer: task.timer + 1 };
+        }
+        return task;
+      });
+      return { ...state, tasks: nextTasks};
+    }
+
     default: {
       return state
     }
