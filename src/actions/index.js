@@ -127,10 +127,18 @@ export function editTask(id, params = {}) {
             if (resp.data.status === 'In Progress') {
                 return dispatch(progressTimerStart(resp.data.id));
             }
+
+            if (task.status === 'In Progress') {
+                return dispatch(progressTimerStop(resp.data.id));
+            }
         });
     };
 }
 
 function getTaskById(tasks, id) {
     return tasks.find(task => task.id === id);
+}
+
+function progressTimerStop(taskId) {
+    return { type: 'TIMER_STOPPED', payload: { taskId }};
 }
