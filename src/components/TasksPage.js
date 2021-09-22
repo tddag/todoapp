@@ -50,6 +50,10 @@ class TasksPage extends Component {
         });
     }
 
+    onSearch = e => {
+        console.log('search term', e.target.value);
+    };
+
     render() {
         if (this.props.isLoading) {
             return (
@@ -62,6 +66,7 @@ class TasksPage extends Component {
         return (
             <div className="tasks">
                 <div className="task-list-header">
+                    <input onChange={this.onSearch} type="text" placeholder="Search..."/>
                     <button className="button button-create" onClick={this.toggleForm}>
                         + New task
                     </button>
