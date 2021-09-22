@@ -41,9 +41,9 @@ componentDidMount() {
 }
 
 function mapStateToProps(state) {
-  const { tasks, searchTerm, isLoading, error } = state.tasks;
+  const { isLoading, error } = state.tasks;
 
-  return { tasks: getFilteredTasks(tasks, searchTerm), isLoading, error };
+  return { tasks: getFilteredTasks(state), isLoading, error };
 }
 
 export default connect(mapStateToProps) (App);

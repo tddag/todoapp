@@ -1,4 +1,7 @@
 
+import { createSelector } from 'reselect';
+
+
 const initialState = {
   tasks: [],
   isLoading: false,
@@ -6,6 +9,8 @@ const initialState = {
   searchTerm: ''
 }
 
+const getTasks = state => state.tasks.tasks;
+const getSearchTerm = state => state.tasks.searchTerm; 
 
 
 export default function tasks(state = initialState, action) {
@@ -90,8 +95,10 @@ export default function tasks(state = initialState, action) {
   }
 }
 
-export function getFilteredTasks(tasks, searchTerm) {
-  return tasks.filter(task => {
-    return task.title.match(new RegExp(searchTerm, 'i'));
-  });
-}
+export const getFilteredTasks = createSelector (
+  [getTasks, getSearchTerm],
+  (tasks, searchTerm) => {
+    return tasks.filter(task => task.title.match(new RegExp(searchTerm, 'i')));
+  },
+);
+
