@@ -142,3 +142,7 @@ function getTaskById(tasks, id) {
 function progressTimerStop(taskId) {
     return { type: 'TIMER_STOPPED', payload: { taskId }};
 }
+
+export function filterTasks(searchTerm) {
+    return { type: 'FILTER_TASKS', payload: { searchTerm}};
+}

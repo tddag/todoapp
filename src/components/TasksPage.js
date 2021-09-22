@@ -43,15 +43,20 @@ class TasksPage extends Component {
     }
 
     renderTaskLists() {
-        const { tasks } = this.props;
+        const { onStatusChange, tasks } = this.props;
+
+        const filteredTasks = tasks.filter(task => {
+            return task.title.match(new RegExp(this.state.searchTerm, 'i'));
+        })
+
         return TASK_STATUSES.map(status => {
-            const statusTasks = tasks.filter(task => task.status === status);
-            return <TaskList key={status} status={status} tasks={statusTasks} onStatusChange={this.props.onStatusChange } />
+            const statusTasks = filteredTasks.filter(task => task.status === status);
+            return <TaskList key={status} status={status} tasks={statusTasks} onStatusChange={onStatusChange} />
         });
     }
 
     onSearch = e => {
-        console.log('search term', e.target.value);
+        this.props.onSearch(e.target.value);
     };
 
     render() {
