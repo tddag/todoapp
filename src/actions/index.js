@@ -2,6 +2,7 @@ import * as api from '../api';
 
 
 import { CALL_API } from '../middleware/api';
+import { normalize, schema } from 'normalizr';
 
 export const FETCH_TASKS_STARTED = 'FETCH_TASKS_STARTED';
 export const FETCH_TASKS_SUCCEEDED = 'FETCH_TASKS_SUCCEEDED';
@@ -18,6 +19,12 @@ export const CREATE_TASK_FAILED = 'CREATE_TASK_FAILED';
 //         },
 //     };
 // }
+
+const taskSchema = new schema.Entity('tasks');
+const projectSchema = new schema.Entity('projects', {
+    tasks: [taskSchema],
+});
+
 
 export function createTask({title, description, status = 'Unstarted' }) {
     return {
@@ -145,4 +152,57 @@ function progressTimerStop(taskId) {
 
 export function filterTasks(searchTerm) {
     return { type: 'FILTER_TASKS', payload: { searchTerm}};
+}
+
+function fetchProjectsStarted(boards) {
+    return { type: 'FETCH_PROJECTS_STARTED', payload: { boards }};
+}
+
+function fetchProjectsSucceeded(projects) {
+    return { type: 'FETCH_PROJECTS_SUCCEEDED', payload: { projects }};
+}
+
+function fetchProjectsFailed(err) {
+    return { type: 'FETCH_PROJECTS_FAILED', payload: err };
+}
+
+
+function receiveEntities(entities) {
+    return {
+        type: 'RECEIVE_ENTITIES',
+        payload: entities,
+    };
+}
+
+export function fetchProjects() {
+    return (dispatch, getState) => {
+        dispatch(fetchProjectsStarted());
+
+        return api
+            .fetchProjects()
+            .then(resp => {
+                const projects = resp.data;
+
+                const normalizedData = normalize(projects, [projectSchema]);
+
+                dispatch(receiveEntities(normalizedData));
+
+                if (!getState().page.currentProjectId) {
+                    const defaultProjectId = projects[0].id;
+                    dispatch(setCurrentProjectId(defaultProjectId));
+                }
+            })
+            .catch(err => {
+                fetchProjectsFailed(err);
+            });
+    };
+}
+
+export function setCurrentProjectId(id) {
+    return {
+        type: 'SET_CURRENT_PROJECT_ID',
+        payload: {
+            id,
+        },
+    };
 }

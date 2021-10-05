@@ -6,7 +6,6 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
-import tasksReducer from './reducers';
 // import { devToolsEnhancer } from 'redux-devtools-extension';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import logger from './middleware/logger';
@@ -14,12 +13,15 @@ import analytics from './middleware/analytics';
 import apiMiddleware from './middleware/api';
 import createSagaMiddleware from 'redux-saga';
 import rootSaga from './sagas';
+import { projects, tasks, page } from './reducers';
 
 const sagaMiddleware = createSagaMiddleware();
 
 const rootReducer = (state = {}, action) => {
   return {
-    tasks: tasksReducer(state.tasks, action),
+    projects: projects(state.projects, action),
+    tasks: tasks(state.tasks, action),
+    page: page(state.page, action),
   };
 };
 
